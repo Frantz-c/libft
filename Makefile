@@ -16,6 +16,7 @@ ft_isalnum.o\
 ft_isalpha.o\
 ft_isascii.o\
 ft_isdigit.o\
+ft_isnumeric.o\
 ft_isprint.o\
 ft_isset_option.o\
 ft_isspace.o\
