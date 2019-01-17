@@ -1,5 +1,5 @@
 NAME = libft.a
-CC = gcc -Wall -Werror -Wextra 
+CC = gcc -Wall -Werror -Wextra -O3 
 OBJ = ft_atoi.o\
 ft_atol.o\
 ft_bzero.o\

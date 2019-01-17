@@ -39,28 +39,6 @@ typedef long double         t_ld;
 typedef char**	t_assoc;
 typedef char*	t_data;
 
-
-/*
-**	array.c defines
-*/
-#define UPSIZ		8
-#define DOWNSIZ		8
-/*
-typedef struct		s_array2
-{
-	size_t		elsiz;
-	void		**array;
-	int			length;
-	int			remainder;
-}					t_array2;
-
-typedef struct		s_array
-{
-	int			length;
-	int			remainder;
-	char		**array;
-}					t_array;
-*/
 typedef struct		s_list
 {
 	void			*content;
@@ -71,6 +49,7 @@ typedef struct		s_list
 /*
 ** pour la fonction ft_sort_array
 */
+
 typedef	struct		s_sortdata
 {
 	size_t	l1;
@@ -81,6 +60,7 @@ typedef	struct		s_sortdata
 /*
 ** Pour ft_getline_mfd
 */
+
 typedef struct		s_file
 {
 	char			pline[FT_BUFSIZ + 1];
@@ -91,6 +71,7 @@ typedef struct		s_file
 /*
 ** Pour ft_get_options
 */
+
 typedef struct		s_options
 {
 	char				*name;
@@ -102,6 +83,7 @@ typedef struct		s_options
 /*
 ** Partie 1
 */
+
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 void				*ft_memset(void *s, int c, size_t n);
@@ -190,14 +172,5 @@ void		        assign_null_2a(void **a1, void **a2);
 int		            get_next_line(const int fd, char **line);
 
 int                 ft_printf(const char *fmt, ...);
-/*
-**	fonctions pour le type t_array
-void				print_array(t_array *a);
-void				free_array(t_array *a);
-char				**get_copy_array(char **t, int length);
-t_array				*new_array(void);
-void				push_array(t_array *a, char *s);
-void				pop_array(t_array *a);
-*/
 
 #endif
