@@ -6,7 +6,7 @@
 /*   By: fcordon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/07 18:24:26 by fcordon      #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/20 10:36:50 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/18 13:26:05 by fcordon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,12 +32,38 @@
 **	-y (hh, h, l, ll, z, j, ...)	: affiche un tableau signe
 **	-Y (hh, h, l, ll, z, j, ...)	: affiche un tableau non-signe
 **	-w								: affiche une structure
-**		exemple -> "%zint,int,next;"
+**		exemple -> "wzint,int,next;"
 **		types acceptes :
 **			char, uchar, short, ushort, int, uint, long, ulong, llong, ullong,
 **			char*, char[], void*, *void{...}, struct{...}, next,
 **			pad[0-9]+, pad_[type]
 */
+printf("%P", ptr);
+
+static int			buffer_alloc(t_ptfdata *data, t_opt *o, const char *fmt, va_list ap)
+{
+	char			*pos;
+	register t_uint	i;
+
+	pos = (char*)fmt;
+	data->buflen = ft_strlen(fmt);
+	while (*pos && (pos = ft_strchr(pos, '%')))
+	{
+		if (*(++pos) == '%')
+		{
+			++pos;
+			continue ;
+		}
+		if (set_attributes(&pos, o, ap) == -1)
+			return (-1);
+		i = (t_uint)*pos - FIRST_SPECIFIER;
+		if (i > FUNCTABSIZ || g_function[i] == 0)
+			return (-1);
+
+		pos++;
+	}
+	return (0);
+}
 
 inline int			ft_printf(const char *fmt, ...)
 {
@@ -45,8 +71,11 @@ inline int			ft_printf(const char *fmt, ...)
 	int			tmp;
 	va_list		ap;
 	t_opt		o;
+	t_ptfdata	data;
 
 	va_start(ap, fmt);
+	if (buffer_alloc(&data, &o, fmt, va_copy(ap)) == -1)
+		return (-1);
 	o.curlen = 0;
 	while ((fmt = ft_strchr(fmt, '%')) != NULL)
 	{

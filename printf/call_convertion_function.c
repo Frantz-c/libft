@@ -6,7 +6,7 @@
 /*   By: fcordon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/10 16:41:41 by fcordon      #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/20 16:38:19 by fcordon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/18 12:03:37 by fcordon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@
 **				si le prototype est {int (type, t_opt *)}
 **									ou
 **				rajouter une condition qui appelle la nouvelle fonction
-**				a la fin de la fonction fixed_len_comvertion
+**				a la fin de la fonction fixed_len_convertion
 */
 
 #include "ft_printf.h"
@@ -51,17 +51,18 @@
 **	Tableau de pointeurs sur fonctions
 */
 
-static const t_voidf	g_function[58] =
+const t_voidf			g_function[FUNCTAB_SIZ] =
 {
 	0, 0, (t_vf)cmaj_spe, (t_vf)di_spe, 0, (t_vf)f_spe, 0, 0, (t_vf)di_spe,
-	0, 0, 0, 0, 0, (t_vf)o_spe, 0, 0, 0, (t_vf)smaj_spe, 0, (t_vf)u_spe, 0,
-	(t_vf)wmaj_spe, (t_vf)xmaj_spe, (t_vf)ymaj_spe, (t_vf)zmaj_spe,
+	0, 0, 0, 0, 0, (t_vf)o_spe, (t_vf)pmaj_spe, 0, 0, (t_vf)smaj_spe, 0,
+	(t_vf)u_spe, 0, (t_vf)wmaj_spe, (t_vf)xmaj_spe,
+	(t_vf)ymaj_spe, (t_vf)zmaj_spe,
 	0, 0,
 	0, 0,
 	0, 0,
 	0, (t_vf)b_spe, (t_vf)c_spe, (t_vf)di_spe, 0, (t_vf)f_spe, 0, 0,
 	(t_vf)di_spe, 0, 0, 0, 0, (t_vf)n_spe, (t_vf)o_spe, (t_vf)p_spe, 0, 0,
-	(t_vf)s_spe, 0, (t_vf)u_spe, (t_vf)v_spe, 0, (t_vf)x_spe, (t_vf)y_spe, 0,
+	(t_vf)s_spe, 0, (t_vf)u_spe, (t_vf)v_spe, 0, (t_vf)x_spe, (t_vf)y_spe, 0
 };
 
 /*
@@ -69,7 +70,7 @@ static const t_voidf	g_function[58] =
 **	des fonctions sur les flottants
 */
 
-static const t_voidf	g_ldfunc[58] =
+static const t_voidf	g_ldfunc[FUNCTAB_SIZ] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -78,7 +79,7 @@ static const t_voidf	g_ldfunc[58] =
 	0, 0, 0, 0, 0, 0, 0, 0, (t_vf)lv_spe, 0, 0, 0, 0
 };
 
-static const t_uint		g_functype[58] =
+static const t_uint		g_functype[FUNCTAB_SIZ] =
 {
 	0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
 	0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 8, 1, 1, 0, 0, 0, 0, 0, 0,
@@ -98,7 +99,7 @@ static const t_uint		g_functype[58] =
 static inline int		fixed_len_convertion(const t_byte **s, t_opt *o,
 								va_list ap, t_uint c)
 {
-	static const t_call	types[58] = {
+	static const t_call	types[FUNCTAB_SIZ] = {
 		0, 0, call_wchar_t_fl, call_long, 0, call_double, 0, 0, call_long,
 		0, 0, 0, 0, 0, call_ulong_fl, 0, 0, 0, call_ptr, 0, call_ulong,
 		0, 0, 0, call_ptr, call_ptr,

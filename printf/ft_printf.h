@@ -6,7 +6,7 @@
 /*   By: fcordon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/19 09:48:49 by fcordon      #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/20 11:26:04 by fcordon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/18 13:26:09 by fcordon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,6 +42,9 @@
 # define VLEN_FLOAT_EXPECTED	0x2U
 # define IS_UNSIGNED_FUNCTION	0x8U
 
+# define FUNCTAB_SIZ			58
+# define FIRST_SPECIFIER		'A'
+
 # define CHARMAX	0x7fU
 # define SHORTMAX	0x7fffU
 # define INTMAX		0x7fffffffU
@@ -52,11 +55,23 @@
 
 struct	s_opt
 {
-	int		flag;
-	int		width;
-	int		precision;
-	int		length;
-	int		curlen;
+	int				flag;
+	int				width;
+	int				precision;
+	int				length;
+	int				curlen;
+	char			*buffer;
+	int				buflen;
+	char			*pos;
+	char			spe;
+	void			*data;
+	struct s_opt	*next;
+};
+
+struct	s_ptfdata
+{
+	char			*buffer;
+	int				buflen;
 };
 
 struct	s_ydata
@@ -70,8 +85,9 @@ struct	s_ydata
 	int				n_elem;
 };
 
-typedef struct s_opt	t_opt;
-typedef struct s_ydata	t_ydata;
+typedef struct s_opt		t_opt;
+typedef struct s_ydata		t_ydata;
+typedef struct s_ptfdata	t_ptfdata;
 
 typedef void	(*t_voidf)();
 typedef void	(*t_vf)();
