@@ -18,7 +18,7 @@ $(NAME): $(OBJECTS)
 	ar -rc $@ $^
 
 %.o: %.c libft.h
-	gcc $(ERRORS) $(OPTIMIZE) -c $<
+	gcc-8 $(ERRORS) $(OPTIMIZE) -c $<
 
 clean:
 	rm -f $(OBJECTS)

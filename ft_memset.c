@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/09 15:42:28 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/10 11:07:22 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/05/10 12:34:46 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,5 +72,5 @@ void		*ft_memset(void *b, int c, size_t len)
 		((char *)b)[i] = c;
 		i++;
 	}
-	return (b);
+	return (bsave);
 }
