@@ -6,7 +6,7 @@
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/04/25 13:25:48 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/05/09 16:48:25 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/05/10 09:54:42 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,28 +24,8 @@ for FILE in $FILES; do
 	echo "\t$FILE \\" >> Makefile
 done
 
-echo "\nOBJECTS  := \$(SOURCES:%.c=%.o)" >> Makefile
-echo "OPTIMIZE := -O3 -fno-stack-protector -fno-builtin" >> Makefile
-echo "ERRORS   := -Wall -Wextra -Wpedantic -Werror" >> Makefile
-echo >> Makefile
-echo "all: \$(NAME)" >> Makefile
-echo >> Makefile
-echo "\$(NAME): \$(OBJECTS)" >> Makefile
-echo "\tar -rc \$@ \$^" >> Makefile
-echo >> Makefile
-echo "%.o: %.c" >> Makefile
-echo "\tgcc-8 \$(ERRORS) \$(OPTIMIZE) -c -o \$@ \$<" >> Makefile
-echo >> Makefile
-echo "clean:" >> Makefile
-echo "\trm -rf \$(OBJECTS)" >> Makefile
-echo >> Makefile
-echo "fclean: clean" >> Makefile
-echo "\trm -f \$(NAME)" >> Makefile
-echo >> Makefile
-echo "re: fclean all" >> Makefile
-echo >> Makefile
-echo "rebuild: fclean" >> Makefile
-echo "\t./generator.sh" >> Makefile
-echo >> Makefile
-echo ".PHONY: all clean fclean re rebuild" >> Makefile
-echo ":MyStdheader\n:x" | vim Makefile >& /dev/null
+echo "\nOBJECTS  := \$(SOURCES:%.c=%.o)\nOPTIMIZE := -O3 -msse2 -mavx -fno-builtin" >> Makefile
+echo "ERRORS   := -Wall -Wextra -Werror\n\nall: \$(NAME)\n\n\$(NAME): \$(OBJECTS)" >> Makefile
+echo "\tar -rc \$@ \$^\n\n%.o: %.c libft.h\n\tgcc \$(ERRORS) \$(OPTIMIZE) -c \$<\n" >> Makefile
+echo "clean:\n\trm -f \$(OBJECTS)\n\nfclean: clean\n\trm -f \$(NAME)\n\nre: fclean all\n" >> Makefile
+echo "rebuild: fclean\n\t./generator.sh\n\n.PHONY: all clean fclean re rebuild" >> Makefile
