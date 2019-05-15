@@ -1,3 +1,16 @@
+# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    Makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: mhouppin <marvin@le-101.fr>                +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2019/05/15 09:40:41 by mhouppin     #+#   ##    ##    #+#        #
+#    Updated: 2019/05/15 09:40:41 by mhouppin    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #
+
 NAME     := libft.a
 
 SOURCES  := \
@@ -25,26 +38,26 @@ SOURCES  := \
 	./ft_strstr.c \
 
 OBJECTS  := $(SOURCES:%.c=%.o)
-OPTIMIZE := -O3 -march=native -fno-builtin
+OPTIMIZE := -O3 -march=native -fno-builtin -fopt-info
 ERRORS   := -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar -rc $@ $^
+	@ar -rc $@ $^
 
 %.o: %.c libft.h
-	gcc-8 $(ERRORS) $(OPTIMIZE) -c $<
+	@gcc-8 $(ERRORS) $(OPTIMIZE) -c $<
 
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
 rebuild: fclean
-	./generator.sh
+	@./generator.sh
 
 .PHONY: all clean fclean re rebuild
