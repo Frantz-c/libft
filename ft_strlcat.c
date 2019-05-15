@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strlen.c                                      .::    .:/ .      .::   */
+/*   ft_strlcat.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/10 12:59:31 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/14 15:58:54 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/05/15 08:19:02 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/15 08:52:14 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+size_t	ft_strlcat(char *dst, const char *src, size_t len)
 {
-	uint64_t		k;
-	const uint64_t	lmagic = 0x0101010101010101ull;
-	const uint64_t	hmagic = 0x8080808080808080ull;
-	const char		*ptr;
+	size_t	srclen;
+	size_t	dstlen;
 
-	ptr = s;
-	while ((uint64_t)ptr & 7)
+	srclen = ft_strlen(src);
+	dstlen = ft_strnlen(dst, len);
+	if (dstlen != len)
 	{
-		if (*ptr == '\0')
-			return (ptr - s);
-		ptr++;
-	}
-	while (1)
-	{
-		k = *((uint64_t *)ptr);
-		if (((k - lmagic) & (~k) & hmagic))
+		if (srclen >= len - dstlen)
 		{
-			while (*ptr)
-				ptr++;
-			break ;
+			ft_memcpy(dst + dstlen, src, len - dstlen - 1);
+			dst[len - 1] = '\0';
 		}
-		ptr += 8;
+		else
+			ft_memcpy(dst + dstlen, src, srclen + 1);
 	}
-	return (ptr - s);
+	return (dstlen + srclen);
 }

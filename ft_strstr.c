@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strlen.c                                      .::    .:/ .      .::   */
+/*   ft_strstr.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/10 12:59:31 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/14 15:58:54 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/05/15 09:05:12 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/15 09:10:54 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *s)
+char	*ft_strstr(const char *big, const char *little)
 {
-	uint64_t		k;
-	const uint64_t	lmagic = 0x0101010101010101ull;
-	const uint64_t	hmagic = 0x8080808080808080ull;
-	const char		*ptr;
+	size_t	llen;
+	char	*next_ptr;
+	char	lchar;
 
-	ptr = s;
-	while ((uint64_t)ptr & 7)
+	lchar = *little;
+	if (!lchar)
+		return ((char *)big);
+	llen = ft_strlen(little);
+	next_ptr = ft_strchr(big, lchar);
+	while (next_ptr != NULL)
 	{
-		if (*ptr == '\0')
-			return (ptr - s);
-		ptr++;
-	}
-	while (1)
-	{
-		k = *((uint64_t *)ptr);
-		if (((k - lmagic) & (~k) & hmagic))
-		{
-			while (*ptr)
-				ptr++;
+		if (ft_memcmp(next_ptr, little, llen) == 0)
 			break ;
-		}
-		ptr += 8;
+		next_ptr = ft_strchr(next_ptr + 1, lchar);
 	}
-	return (ptr - s);
+	return (next_ptr);
 }
