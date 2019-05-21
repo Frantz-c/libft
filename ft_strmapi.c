@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_strmapi.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 10:51:25 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/05/21 10:16:27 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/21 10:19:30 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+char	*ft_strmapi(char const *str, char (*func)(unsigned int, char))
 {
-	long	result;
-	long	sign;
+	unsigned int	size;
+	unsigned int	i;
+	char			*ret;
 
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-		|| *str == '\f' || *str == '\v')
-		str++;
-	sign = (*str == '-');
-	str += (*str == '-' || *str == '+');
-	result = 0;
-	while (*str >= '0' && *str <= '9')
+	size = (unsigned int)ft_strlen(str);
+	ret = (char *)malloc(size + 1);
+	if (ret == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
 	{
-		result *= 10;
-		result += *str;
-		result -= '0';
-		str++;
+		ret[i] = func(i, str[i]);
+		i++;
 	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
-	return (sign ? -result : result);
+	ret[i] = '\0';
+	return (ret);
 }

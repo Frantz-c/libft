@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_memcpy.c                                      .::    .:/ .      .::   */
+/*   strtok.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
+/*   By: mhouppin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/10 09:01:59 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 11:29:04 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/04/10 14:54:25 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/21 10:45:43 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strtok(char *s, const char *delim)
 {
-	void	*ptrsave;
+	static char	*olds;
 
-	ptrsave = dst;
-	while (n > 7)
-	{
-		*((int64_t *)dst) = *((const int64_t *)src);
-		dst += 8;
-		src += 8;
-		n -= 8;
-	}
-	while (n--)
-	{
-		*((int8_t *)dst) = *((const int8_t *)src);
-		dst++;
-		src++;
-	}
-	return (ptrsave);
+	return (ft_strtok_r(s, delim, &olds));
 }

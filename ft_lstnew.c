@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_lstnew.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 10:51:25 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/05/21 11:34:03 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/21 11:40:35 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+t_list	*ft_lstnew(void *data, size_t size)
 {
-	long	result;
-	long	sign;
+	t_list	*ret;
 
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-		|| *str == '\f' || *str == '\v')
-		str++;
-	sign = (*str == '-');
-	str += (*str == '-' || *str == '+');
-	result = 0;
-	while (*str >= '0' && *str <= '9')
+	ret = (t_list *)malloc(sizeof(t_list));
+	if (ret == NULL)
+		return (NULL);
+	if (data == NULL || size == 0)
 	{
-		result *= 10;
-		result += *str;
-		result -= '0';
-		str++;
+		ret->data = NULL;
+		ret->size = 0;
 	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
-	return (sign ? -result : result);
+	else
+	{
+		ret->data = malloc(size);
+		if (ret->data == 0)
+		{
+			free(ret);
+			return (NULL);
+		}
+		ft_memcpy(ret->data, data, size);
+		ret->size = size;
+	}
+	ret->next = NULL;
+	return (ret);
 }

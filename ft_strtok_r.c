@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_strtok_r.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 10:51:25 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/05/21 10:45:45 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/21 10:45:55 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+char	*ft_strtok_r(char *s, const char *delim, char **oldptr)
 {
-	long	result;
-	long	sign;
+	char	*end;
 
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-		|| *str == '\f' || *str == '\v')
-		str++;
-	sign = (*str == '-');
-	str += (*str == '-' || *str == '+');
-	result = 0;
-	while (*str >= '0' && *str <= '9')
+	if (!s)
+		s = *oldptr;
+	if (!*s)
 	{
-		result *= 10;
-		result += *str;
-		result -= '0';
-		str++;
+		*oldptr = s;
+		return (NULL);
 	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
-	return (sign ? -result : result);
+	s += ft_strspn(s, delim);
+	if (!*s)
+	{
+		*oldptr = s;
+		return (NULL);
+	}
+	end = s + ft_strcspn(s, delim);
+	if (!*end)
+	{
+		*oldptr = end;
+		return (s);
+	}
+	*end = '\0';
+	*oldptr = end + 1;
+	return (s);
 }

@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_lstdel.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 10:51:25 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/05/21 11:44:37 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/21 11:45:57 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+void	ft_lstdel(t_list **alst, void (*func)(void *, size_t))
 {
-	long	result;
-	long	sign;
+	t_list	*t;
 
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-		|| *str == '\f' || *str == '\v')
-		str++;
-	sign = (*str == '-');
-	str += (*str == '-' || *str == '+');
-	result = 0;
-	while (*str >= '0' && *str <= '9')
+	while (*alst)
 	{
-		result *= 10;
-		result += *str;
-		result -= '0';
-		str++;
+		func((*alst)->data, (*alst)->size);
+		t = (*alst)->next;
+		free(*alst);
+		*alst = t;
 	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
-	return (sign ? -result : result);
 }

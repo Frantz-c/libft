@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_putnbr.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 10:51:25 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/05/21 11:05:20 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/05/21 11:09:24 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+void	ft_putnbr(int val)
 {
-	long	result;
-	long	sign;
+	static char		buffer[13];
+	int				i;
+	unsigned int	uval;
 
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-		|| *str == '\f' || *str == '\v')
-		str++;
-	sign = (*str == '-');
-	str += (*str == '-' || *str == '+');
-	result = 0;
-	while (*str >= '0' && *str <= '9')
+	if (val == -2147483648)
 	{
-		result *= 10;
-		result += *str;
-		result -= '0';
-		str++;
+		write(1, "-2147483648", 12);
+		return ;
 	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
-	return (sign ? -result : result);
+	uval = (val < 0) ? -val : val;
+	buffer[12] = '\0';
+	i = 11;
+	while (1)
+	{
+		buffer[i] = uval % 10 + '0';
+		uval /= 10;
+		if (uval == 0)
+			break ;
+		i--;
+	}
+	if (val < 0)
+		buffer[--i] = '-';
+	write(1, buffer + i, 12 - i);
 }
