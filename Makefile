@@ -1,15 +1,32 @@
-NAME     := libft.a
+NAME     := libftprintf.a
 
 SOURCES  := \
+	./ft_addbuf.c \
+	./ft_addbuf_char.c \
+	./ft_apply_width.c \
 	./ft_atoi.c \
 	./ft_bzero.c \
+	./ft_clean_format.c \
+	./ft_dprintf.c \
 	./ft_explode.c \
+	./ft_flt_add_demi.c \
+	./ft_flt_get_dec.c \
+	./ft_flt_get_int.c \
+	./ft_flt_size.c \
+	./ft_fmod.c \
 	./ft_get_next_line.c \
+	./ft_get_uint.c \
+	./ft_inf_nan.c \
+	./ft_int_set_precision.c \
+	./ft_int_sharp.c \
+	./ft_int_zero_padding.c \
 	./ft_isalnum.c \
 	./ft_isalpha.c \
 	./ft_isascii.c \
 	./ft_isdigit.c \
+	./ft_islower.c \
 	./ft_isprint.c \
+	./ft_isupper.c \
 	./ft_itoa.c \
 	./ft_lstadd.c \
 	./ft_lstdel.c \
@@ -26,6 +43,18 @@ SOURCES  := \
 	./ft_memdel.c \
 	./ft_memmove.c \
 	./ft_memset.c \
+	./ft_print_bin.c \
+	./ft_print_chr.c \
+	./ft_print_flt.c \
+	./ft_print_hex.c \
+	./ft_print_int.c \
+	./ft_print_npt.c \
+	./ft_print_oct.c \
+	./ft_print_sci.c \
+	./ft_print_str.c \
+	./ft_print_uns.c \
+	./ft_printconv.c \
+	./ft_printf.c \
 	./ft_putchar.c \
 	./ft_putchar_fd.c \
 	./ft_putendl.c \
@@ -36,6 +65,7 @@ SOURCES  := \
 	./ft_putstr_fd.c \
 	./ft_strcat.c \
 	./ft_strchr.c \
+	./ft_strchrnul.c \
 	./ft_strclr.c \
 	./ft_strcmp.c \
 	./ft_strcpy.c \
@@ -68,6 +98,10 @@ SOURCES  := \
 	./ft_strtrim.c \
 	./ft_tolower.c \
 	./ft_toupper.c \
+	./ft_ultoa_buf.c \
+	./ft_uppercase.c \
+	./ft_vdprintf.c \
+	./ft_vprintf.c \
 	./ft_wordcount.c \
 
 COMPILE  := gcc
