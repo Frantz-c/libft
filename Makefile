@@ -41,6 +41,7 @@ SOURCES  := \
 	./ft_memcmp.c \
 	./ft_memcpy.c \
 	./ft_memdel.c \
+	./ft_memmem.c \
 	./ft_memmove.c \
 	./ft_memset.c \
 	./ft_print_bin.c \

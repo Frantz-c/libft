@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/09 15:38:51 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 16:33:36 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/05/21 16:54:12 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -86,6 +86,8 @@ void		*ft_memchr(const void *s, int c, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		ft_memdel(void **ptr);
+void		*ft_memmem(const void *big, size_t blen, const char *little,
+			size_t llen);
 void		*ft_memmove(void *dst, const void *src, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_putchar(char c);
