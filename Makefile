@@ -1,4 +1,4 @@
-NAME     := libftprintf.a
+NAME     := libft.a
 
 SOURCES  := \
 	./ft_addbuf.c \
@@ -63,6 +63,8 @@ SOURCES  := \
 	./ft_putnbr_fd.c \
 	./ft_putstr.c \
 	./ft_putstr_fd.c \
+	./ft_stpcpy.c \
+	./ft_stpncpy.c \
 	./ft_strcat.c \
 	./ft_strchr.c \
 	./ft_strchrnul.c \

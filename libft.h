@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/09 15:38:51 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 15:40:57 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/05/21 16:33:36 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -96,6 +96,8 @@ void		ft_putendl(const char *s);
 void		ft_putendl_fd(const char *s, int fd);
 void		ft_putnbr(int nb);
 void		ft_putnbr_fd(int nb, int fd);
+char		*ft_stpcpy(char *dst, const char *src);
+char		*ft_stpncpy(char *dst, const char *src, size_t len);
 char		*ft_strcat(char *dst, const char *src);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strchrnul(const char *s, int c);
