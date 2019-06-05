@@ -6,32 +6,32 @@
 /*   By: mhouppin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/16 11:28:41 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 12:01:42 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/05 08:16:29 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_fill_tmp(char **line, char **exbuf, char *nl_pointer)
+static int	ft_fill_tmp(char **line, char **excess_buf, char *newline_pointer)
 {
 	char	*str;
 
-	if (nl_pointer)
+	if (newline_pointer)
 	{
-		*line = ft_strndup(*exbuf, (size_t)(nl_pointer - *exbuf));
-		str = ft_strdup(nl_pointer + 1);
+		*line = ft_strndup(*excess_buf, (size_t)(newline_pointer - *excess_buf));
+		str = ft_strdup(newline_pointer + 1);
 	}
 	else
 	{
-		*line = ft_strdup(*exbuf);
+		*line = ft_strdup(*excess_buf);
 		str = NULL;
 	}
-	free(*exbuf);
-	*exbuf = str;
-	if (line == NULL || (nl_pointer != NULL && str == NULL))
+	free(*excess_buf);
+	*excess_buf = str;
+	if (line == NULL || (newline_pointer != NULL && str == NULL))
 		return (-1);
-	return ((**line) != '\0');
+	return ((**line) != '\0' || (*excess_buf) != NULL);
 }
 
 int			ft_get_next_line(int fd, char **line)
