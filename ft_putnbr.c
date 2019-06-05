@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/21 11:05:20 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 11:09:24 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/05 12:50:17 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,18 +15,17 @@
 
 void	ft_putnbr(int val)
 {
-	static char		buffer[13];
+	static char		buffer[11];
 	int				i;
 	unsigned int	uval;
 
 	if (val == -2147483648)
 	{
-		write(1, "-2147483648", 12);
+		write(1, "-2147483648", 11);
 		return ;
 	}
 	uval = (val < 0) ? -val : val;
-	buffer[12] = '\0';
-	i = 11;
+	i = 10;
 	while (1)
 	{
 		buffer[i] = uval % 10 + '0';
@@ -37,5 +36,5 @@ void	ft_putnbr(int val)
 	}
 	if (val < 0)
 		buffer[--i] = '-';
-	write(1, buffer + i, 12 - i);
+	write(1, buffer + i, 11 - i);
 }
