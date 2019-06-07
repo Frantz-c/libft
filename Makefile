@@ -4,9 +4,15 @@ SOURCES  := \
 	./ft_addbuf.c \
 	./ft_addbuf_char.c \
 	./ft_apply_width.c \
+	./ft_atohex.c \
 	./ft_atoi.c \
+	./ft_atol.c \
+	./ft_atooct.c \
 	./ft_bzero.c \
 	./ft_clean_format.c \
+	./ft_crep.c \
+	./ft_crepall.c \
+	./ft_crrep.c \
 	./ft_dprintf.c \
 	./ft_explode.c \
 	./ft_flt_add_demi.c \
@@ -26,7 +32,9 @@ SOURCES  := \
 	./ft_isdigit.c \
 	./ft_islower.c \
 	./ft_isprint.c \
+	./ft_isspace.c \
 	./ft_isupper.c \
+	./ft_isxdigit.c \
 	./ft_itoa.c \
 	./ft_lstadd.c \
 	./ft_lstdel.c \
@@ -40,9 +48,13 @@ SOURCES  := \
 	./ft_memchr.c \
 	./ft_memcmp.c \
 	./ft_memcpy.c \
+	./ft_memcrep.c \
+	./ft_memcrepall.c \
 	./ft_memdel.c \
+	./ft_memdup.c \
 	./ft_memmem.c \
 	./ft_memmove.c \
+	./ft_mempcpy.c \
 	./ft_memset.c \
 	./ft_print_bin.c \
 	./ft_print_chr.c \
@@ -64,6 +76,8 @@ SOURCES  := \
 	./ft_putnbr_fd.c \
 	./ft_putstr.c \
 	./ft_putstr_fd.c \
+	./ft_realloc.c \
+	./ft_skip.c \
 	./ft_stpcpy.c \
 	./ft_stpncpy.c \
 	./ft_strcat.c \
@@ -96,9 +110,13 @@ SOURCES  := \
 	./ft_strspn.c \
 	./ft_strstr.c \
 	./ft_strsub.c \
+	./ft_strswap.c \
 	./ft_strtok.c \
 	./ft_strtok_r.c \
+	./ft_strtolower.c \
+	./ft_strtoupper.c \
 	./ft_strtrim.c \
+	./ft_tablesize.c \
 	./ft_tolower.c \
 	./ft_toupper.c \
 	./ft_ultoa_buf.c \
@@ -124,6 +142,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	ar -rc $@ $^
+	ranlib $@
 
 %.o: %.c libft.h
 	$(COMPILE) $(ERRORS) $(OPTIMIZE) -c $<

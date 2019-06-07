@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_crepall.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/07 13:57:23 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/06/07 14:01:12 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/07 14:02:03 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+size_t		ft_crepall(char *str, int c, int replace)
 {
-	long	result;
-	long	sign;
+	size_t	count;
 
-	while (ft_isspace(*str))
-		str++;
-	sign = (*str == '-');
-	str += (*str == '-' || *str == '+');
-	result = 0;
-	while (*str >= '0' && *str <= '9')
+	count = 0;
+	while ((str = ft_strchr(str, c)) != NULL)
 	{
-		result *= 10;
-		result += *str;
-		result -= '0';
-		str++;
+		*(str++) = replace;
+		count++;
 	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
-	return (sign ? -result : result);
+	return (count);
 }

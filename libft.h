@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/09 15:38:51 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 16:54:12 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/07 14:53:02 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,19 +57,18 @@ struct		s_format
 	int				specifier;
 };
 
-struct		s_list
-{
-	void			*data;
-	size_t			size;
-	struct s_list	*next;
-};
-
+typedef unsigned int	t_uint;
 typedef struct s_buffer	t_buffer;
 typedef struct s_format	t_format;
-typedef struct s_list	t_list;
 
-int			ft_atoi(const char *s);
+t_uint		ft_atohex(const char *str);
+int			ft_atoi(const char *str);
+long		ft_atol(const char *str);
+t_uint		ft_atooct(const char *str);
 void		ft_bzero(void *b, size_t n);
+char		*ft_crep(char *str, int c, int replace);
+size_t		ft_crepall(char *str, int c, int replace);
+char		*ft_crrep(char *str, int c, int replace);
 char		**ft_explode(const char *str, const char *delim);
 int			ft_get_next_line(int fd, char **line);
 int			ft_isalpha(int c);
@@ -78,17 +77,23 @@ int			ft_isascii(int c);
 int			ft_isdigit(int c);
 int			ft_islower(int c);
 int			ft_isprint(int c);
+int			ft_isspace(int c);
 int			ft_isupper(int c);
+int			ft_isxdigit(int c);
 char		*ft_itoa(int val);
 void		*ft_memalloc(size_t size);
 void		*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void		*ft_memchr(const void *s, int c, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
+char		*ft_memcrep(char *str, int c, int replace, size_t size);
+size_t		ft_memcrepall(char *str, int c, int replace, size_t size);
 void		ft_memdel(void **ptr);
+void		*ft_memdup(const void *s, size_t size);
 void		*ft_memmem(const void *big, size_t blen, const char *little,
 			size_t llen);
 void		*ft_memmove(void *dst, const void *src, size_t n);
+void		*ft_mempcpy(void *dst, const void *src, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_putchar(char c);
 void		ft_putchar_fd(char c, int fd);
@@ -98,6 +103,8 @@ void		ft_putendl(const char *s);
 void		ft_putendl_fd(const char *s, int fd);
 void		ft_putnbr(int nb);
 void		ft_putnbr_fd(int nb, int fd);
+void		*ft_realloc(void *oldptr, size_t old_size, size_t new_size);
+char		*ft_skip(const char *str, const char *to_skip);
 char		*ft_stpcpy(char *dst, const char *src);
 char		*ft_stpncpy(char *dst, const char *src, size_t len);
 char		*ft_strcat(char *dst, const char *src);
@@ -130,21 +137,17 @@ char		**ft_strsplit(const char *str, char c);
 size_t		ft_strspn(const char *str, const char *delim);
 char		*ft_strstr(const char *big, const char *little);
 char		*ft_strsub(const char *s, unsigned int start, size_t len);
+char		*ft_strswap(const char *str, const char *srch, const char *repl);
 char		*ft_strtok(char *str, const char *delim);
 char		*ft_strtok_r(char *str, const char *delim, char **oldptr);
+char		*ft_strtolower(char *str);
+char		*ft_strtoupper(char *str);
 char		*ft_strtrim(const char *str);
+ssize_t		ft_tablesize(void **table);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
 void		ft_uppercase(char *str);
 size_t		ft_wordcount(char *s, const char *delim);
-
-t_list		*ft_lstnew(void *data, size_t size);
-void		ft_lstdelone(t_list **alst, void (*func)(void *, size_t));
-void		ft_lstdel(t_list **alst, void (*func)(void *, size_t));
-void		ft_lstadd(t_list **alst, t_list *node);
-void		ft_lstiter(t_list *lst, void (*func)(t_list *));
-t_list		*ft_lstmap(t_list *lst, t_list *(*func)(t_list *));
-void		ft_lstpush(t_list **alst, t_list *node);
 
 void		ft_apply_width(t_buffer *buffer, t_format *format);
 void		ft_int_sharp(t_buffer *buffer, t_format *format);

@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_realloc.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/07 13:57:23 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/06/07 14:22:25 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/07 14:42:51 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+void	*ft_realloc(void *oldptr, size_t old_size, size_t new_size)
 {
-	long	result;
-	long	sign;
+	void	*newptr;
 
-	while (ft_isspace(*str))
-		str++;
-	sign = (*str == '-');
-	str += (*str == '-' || *str == '+');
-	result = 0;
-	while (*str >= '0' && *str <= '9')
-	{
-		result *= 10;
-		result += *str;
-		result -= '0';
-		str++;
-	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
-	return (sign ? -result : result);
+	newptr = malloc(new_size);
+	if (newptr == NULL)
+		return (newptr);
+	ft_memcpy(newptr, oldptr, (old_size < new_size) ? old_size : new_size);
+	free(oldptr);
+	return (newptr);
 }

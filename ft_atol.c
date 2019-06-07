@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_atol.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/05/14 16:06:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/07 13:57:23 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/06/07 13:56:39 by mhouppin     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/07 13:57:11 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
 	long	result;
 	long	sign;
@@ -30,7 +30,5 @@ int		ft_atoi(const char *str)
 		result -= '0';
 		str++;
 	}
-	if (result > 2147483648 || result < -2147483648)
-		return (sign ? 0 : -1);
 	return (sign ? -result : result);
 }
