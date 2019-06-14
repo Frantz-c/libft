@@ -6,7 +6,7 @@
 /*   By: mhouppin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/16 11:28:41 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/05 08:16:29 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/12 09:57:13 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,8 @@ static int	ft_fill_tmp(char **line, char **excess_buf, char *newline_pointer)
 
 	if (newline_pointer)
 	{
-		*line = ft_strndup(*excess_buf, (size_t)(newline_pointer - *excess_buf));
+		*line = ft_strndup(*excess_buf,
+				(size_t)(newline_pointer - *excess_buf));
 		str = ft_strdup(newline_pointer + 1);
 	}
 	else

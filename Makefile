@@ -1,8 +1,17 @@
 NAME     := libft.a
 
 SOURCES  := \
+	./bytearray/array_init.c \
+	./bytearray/array_pop_floats.c \
+	./bytearray/array_pop_integers.c \
+	./bytearray/array_push_data.c \
+	./bytearray/array_push_floats.c \
+	./bytearray/array_push_integers.c \
+	./bytearray/array_realloc.c \
+	./bytearray/array_sort.c \
 	./ft_addbuf.c \
 	./ft_addbuf_char.c \
+	./ft_align.c \
 	./ft_apply_width.c \
 	./ft_atohex.c \
 	./ft_atoi.c \
@@ -36,13 +45,6 @@ SOURCES  := \
 	./ft_isupper.c \
 	./ft_isxdigit.c \
 	./ft_itoa.c \
-	./ft_lstadd.c \
-	./ft_lstdel.c \
-	./ft_lstdelone.c \
-	./ft_lstiter.c \
-	./ft_lstmap.c \
-	./ft_lstnew.c \
-	./ft_lstpush.c \
 	./ft_memalloc.c \
 	./ft_memccpy.c \
 	./ft_memchr.c \
@@ -78,6 +80,7 @@ SOURCES  := \
 	./ft_putstr_fd.c \
 	./ft_realloc.c \
 	./ft_skip.c \
+	./ft_sort.c \
 	./ft_stpcpy.c \
 	./ft_stpncpy.c \
 	./ft_strcat.c \
@@ -145,7 +148,7 @@ $(NAME): $(OBJECTS)
 	ranlib $@
 
 %.o: %.c libft.h
-	$(COMPILE) $(ERRORS) $(OPTIMIZE) -c $<
+	$(COMPILE) $(ERRORS) $(OPTIMIZE) -c -o $@ $<
 
 clean:
 	rm -f $(OBJECTS)

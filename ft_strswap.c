@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/07 14:28:34 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/07 14:44:13 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/12 09:56:42 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,8 +36,8 @@ char			*ft_strswap(const char *str, const char *srch, const char *repl)
 
 	if ((offset = get_replace_count(str, srch)) == 0)
 		return (ft_strdup(str));
-	if ((retval = (char *)malloc(ft_strlen(str) + 1 + 
-					offset * (rep_size - src_size))) == NULL)
+	if ((retval = (char *)malloc(ft_strlen(str) + 1
+					+ offset * (rep_size - src_size))) == NULL)
 		return (retval);
 	previous = str;
 	offset = 0;

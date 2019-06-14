@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/09 15:38:51 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/07 14:53:02 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/12 10:27:01 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,8 +14,8 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "bytearray/barray.h"
 # include <stdarg.h>
-# include <stdlib.h>
 # include <unistd.h>
 
 # define BUFF_SIZE	4096
@@ -61,6 +61,7 @@ typedef unsigned int	t_uint;
 typedef struct s_buffer	t_buffer;
 typedef struct s_format	t_format;
 
+size_t		ft_align(void *data);
 t_uint		ft_atohex(const char *str);
 int			ft_atoi(const char *str);
 long		ft_atol(const char *str);
@@ -105,6 +106,8 @@ void		ft_putnbr(int nb);
 void		ft_putnbr_fd(int nb, int fd);
 void		*ft_realloc(void *oldptr, size_t old_size, size_t new_size);
 char		*ft_skip(const char *str, const char *to_skip);
+void		ft_sort(void *b, size_t elemsize, size_t nitems,
+			int (*cmp)(void *, void *));
 char		*ft_stpcpy(char *dst, const char *src);
 char		*ft_stpncpy(char *dst, const char *src, size_t len);
 char		*ft_strcat(char *dst, const char *src);
