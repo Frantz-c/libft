@@ -6,13 +6,13 @@
 #    By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/04/25 13:25:48 by mhouppin     #+#   ##    ##    #+#        #
-#    Updated: 2019/07/12 16:54:51 by mhouppin    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/07/12 16:58:20 by mhouppin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 #!/bin/zsh
 
-FILES=$(find -f . \( -type f \) | grep '\.c')
+FILES=$(find -f . \( -type f \) | grep '\.c' | sed 's/\.\///g')
 
 rm Makefile
 
