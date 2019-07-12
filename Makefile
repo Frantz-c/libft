@@ -161,7 +161,7 @@ objects/%.s: %.c libft.h
 	$(COMPILE) $(ERRORS) $(OPTIMIZE) -S -o $@ $<
 
 objects/%.o: objects/%.s
-	$(COMPILE) $(OPTIMIZE) -c -o $@ $<
+	$(COMPILE) -c -o $@ $<
 
 clean:
 	rm -rf objects
