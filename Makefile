@@ -142,22 +142,25 @@ ifneq ($(shell which gcc-9),)
 	COMPILE  := gcc-9
 endif
 
+PREPROCESS := $(SOURCES:%.c=objects/%.c)
 ASSEMBLY := $(SOURCES:%.c=objects/%.s)
-
 OBJECTS  := $(SOURCES:%.c=objects/%.o)
 OPTIMIZE := -O3 -march=native -fno-builtin -fno-stack-protector -fopt-info-optall
 ERRORS   := -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): objects $(ASSEMBLY) $(OBJECTS)
+$(NAME): objects $(PREPROCESS) $(ASSEMBLY) $(OBJECTS)
 	ar -rc $@ $(OBJECTS)
 	ranlib $@
 
 objects:
 	mkdir -p $@/vector $@/bytearray
 
-objects/%.s: %.c libft.h
+objects/%.c: %.c libft.h
+	$(COMPILE) $(ERRORS) -E -o $@ $<
+
+objects/%.s: objects/%.c
 	$(COMPILE) $(ERRORS) $(OPTIMIZE) -S -o $@ $<
 
 objects/%.o: objects/%.s
