@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/09 15:38:51 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/12 10:27:01 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/11 14:40:59 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 # define LIBFT_H
 
 # include "bytearray/barray.h"
+# include "vector/vector.h"
 # include <stdarg.h>
 # include <unistd.h>
 
@@ -55,6 +56,13 @@ struct		s_format
 	int				width;
 	int				precision;
 	int				specifier;
+};
+
+struct		s_sortblock
+{
+	size_t	left;
+	size_t	right;
+	int		(*cmp)(const void *, const void *);
 };
 
 typedef unsigned int	t_uint;
@@ -107,7 +115,7 @@ void		ft_putnbr_fd(int nb, int fd);
 void		*ft_realloc(void *oldptr, size_t old_size, size_t new_size);
 char		*ft_skip(const char *str, const char *to_skip);
 void		ft_sort(void *b, size_t elemsize, size_t nitems,
-			int (*cmp)(void *, void *));
+			int (*cmp)(const void *, const void *));
 char		*ft_stpcpy(char *dst, const char *src);
 char		*ft_stpncpy(char *dst, const char *src, size_t len);
 char		*ft_strcat(char *dst, const char *src);

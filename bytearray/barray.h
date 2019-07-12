@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/12 08:50:35 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/12 09:57:26 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/11 14:34:49 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,10 +54,10 @@ int			array_push_data(t_barray *array, const char *b, size_t size);
 int			array_insert(t_barray *array, const char *b, size_t i, size_t size);
 
 void		array_sort(t_barray *array, size_t elemsize,
-			int (*cmp)(void *, void *));
+			int (*cmp)(const void *, const void *));
 
 void		array_filter(t_barray *array, size_t elemsize,
-			int (*filter)(void *));
+			int (*filter)(const void *));
 
 void		array_destroy(t_barray *array);
 

@@ -1,6 +1,7 @@
 NAME     := libft.a
 
 SOURCES  := \
+	./bytearray/array_filter.c \
 	./bytearray/array_init.c \
 	./bytearray/array_pop_floats.c \
 	./bytearray/array_pop_integers.c \
@@ -127,6 +128,10 @@ SOURCES  := \
 	./ft_vdprintf.c \
 	./ft_vprintf.c \
 	./ft_wordcount.c \
+	./vector/vector.c \
+	./vector/vector_at.c \
+	./vector/vector_io.c \
+	./vector/vector_sort.c \
 
 COMPILE  := gcc
 
@@ -137,21 +142,29 @@ ifneq ($(shell which gcc-9),)
 	COMPILE  := gcc-9
 endif
 
-OBJECTS  := $(SOURCES:%.c=%.o)
-OPTIMIZE := -O3 -march=native -fno-builtin
+ASSEMBLY := $(SOURCES:%.c=objects/%.s)
+
+OBJECTS  := $(SOURCES:%.c=objects/%.o)
+OPTIMIZE := -O3 -march=native -fno-builtin -fno-stack-protector -fopt-info-optall
 ERRORS   := -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	ar -rc $@ $^
+$(NAME): objects $(ASSEMBLY) $(OBJECTS)
+	ar -rc $@ $(OBJECTS)
 	ranlib $@
 
-%.o: %.c libft.h
-	$(COMPILE) $(ERRORS) $(OPTIMIZE) -c -o $@ $<
+objects:
+	mkdir -p $@/vector $@/bytearray
+
+objects/%.s: %.c libft.h
+	$(COMPILE) $(ERRORS) $(OPTIMIZE) -S -o $@ $<
+
+objects/%.o: objects/%.s
+	$(COMPILE) $(OPTIMIZE) -c -o $@ $<
 
 clean:
-	rm -f $(OBJECTS)
+	rm -rf objects
 
 fclean: clean
 	rm -f $(NAME)

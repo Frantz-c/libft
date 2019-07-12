@@ -6,19 +6,12 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/12 10:27:34 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/12 10:56:20 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/07/11 14:40:35 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-struct	s_sortblock
-{
-	size_t	left;
-	size_t	right;
-	int		(*cmp)(void *, void *);
-};
 
 static void	merge_blocks(void *b_left, void *b_right, size_t size,
 			struct s_sortblock *x)
@@ -48,7 +41,7 @@ static void	merge_blocks(void *b_left, void *b_right, size_t size,
 }
 
 void		ft_sort(void *b, size_t elemsize, size_t nitems,
-			int (*cmp)(void *, void *))
+			int (*cmp)(const void *, const void *))
 {
 	struct s_sortblock	x;
 
