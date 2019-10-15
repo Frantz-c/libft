@@ -6,7 +6,7 @@
 /*   By: mhouppin <mhouppin@le-101.fr>              +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/21 10:52:21 by mhouppin     #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/21 10:58:08 by mhouppin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/15 09:24:59 by mhouppin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,8 +19,6 @@ char	*ft_itoa(int val)
 	int				i;
 	unsigned int	uval;
 
-	if (val == -2147483648)
-		return (ft_strdup("-2147483648"));
 	uval = (val < 0) ? -val : val;
 	buffer[12] = '\0';
 	i = 11;

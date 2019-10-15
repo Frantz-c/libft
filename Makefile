@@ -145,7 +145,7 @@ endif
 PREPROCESS := $(SOURCES:%.c=objects/%.c)
 ASSEMBLY := $(SOURCES:%.c=objects/%.s)
 OBJECTS  := $(SOURCES:%.c=objects/%.o)
-OPTIMIZE := -O3 -march=native -fno-builtin -fno-stack-protector -fopt-info-optall
+OPTIMIZE := -O3 -march=native -fno-builtin -fno-stack-protector
 ERRORS   := -Wall -Wextra -Werror
 
 all: $(NAME)
